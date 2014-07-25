@@ -1,0 +1,189 @@
+# THREE GOLD STARS
+
+# Sudoku [http://en.wikipedia.org/wiki/Sudoku]
+# is a logic puzzle where a game
+# is defined by a partially filled
+# 9 x 9 square of digits where each square
+# contains one of the digits 1,2,3,4,5,6,7,8,9.
+# For this question we will generalize
+# and simplify the game.
+
+# Define a procedure, check_sudoku,
+# that takes as input a square list
+# of lists representing an n x n
+# sudoku puzzle solution and returns the boolean
+# True if the input is a valid
+# sudoku square and returns the boolean False
+# otherwise.
+
+# A valid sudoku square satisfies these
+# two properties:
+
+#   1. Each column of the square contains
+#       each of the whole numbers from 1 to n exactly once.
+
+#   2. Each row of the square contains each
+#       of the whole numbers from 1 to n exactly once.
+
+# You may assume the the input is square and contains at
+# least one row and column.
+
+correct = [[1,2,3],
+           [2,3,1],
+           [3,1,2]]
+
+incorrect = [[1,2,3,4],
+             [2,3,1,3],
+             [3,1,2,3],
+             [4,4,4,4]]
+
+incorrect2 = [[1,2,3,4],
+             [2,3,1,4],
+             [4,1,2,3],
+             [3,4,1,2]]
+
+incorrect3 = [[1,2,3,4,5],
+              [2,3,1,5,6],
+              [4,5,2,1,3],
+              [3,4,5,2,1],
+              [5,6,4,3,2]]
+
+incorrect4 = [['a','b','c'],
+              ['b','c','a'],
+              ['c','a','b']]
+
+incorrect5 = [ [1, 1.5],
+               [1.5, 1]]
+
+incorrect6= [[1,2,3,4],
+             [2,4,1,3],
+             [3,1,4,2],
+             [4,3,2,1]]
+
+incorrect7= [[0,1,2], 
+             [2,0,1], 
+             [1,2,0]]
+
+def check_arr(arr):
+    arr_len=len(arr)
+    for x in arr:
+  #      print x
+        count=0
+        i=0
+        while (i<arr_len):
+  #          print "X/Arr[i] "+ str(x)+"/"+str(arr[i])
+            if x > arr_len:
+                return False
+            if x == arr[i]:               
+                count=count+1
+            i=i+1
+  #          print "count="+str(count)
+        if count !=1:
+            return False
+    return True
+    
+ 
+def check_columns(sub_array, array, arr_len):
+    row=0
+    for x in sub_array:
+        #print "X= "+ str(x)
+        #print type(x)
+        if str(type(x)) != "<type 'int'>":
+            return False
+        if x < 1:
+            return False
+        #print "_______________________"
+        i=0
+        count=0
+        while (i<arr_len):
+            #print "X= "+str(x)+" / "+ "Arr_val="+ str(array[i][row])
+            if x == (array[i][row]) :
+                count=count+1
+                #print "Count= "+str(count)
+                if count != 1:
+                    return False        
+            i=i+1
+        row=row+1
+        #print "_________"
+    return True
+            
+            
+        
+        
+    
+    
+        
+
+
+def check_rows(array,arr_len):
+    i=0
+    counter=0
+#    arr_len=len(array)
+ #   print arr_len
+    for x in array:        
+        #print x
+        #print check_arr(x)
+        if check_arr(x) == False:
+            return False
+    return True
+ 
+          
+   
+            
+                    
+                
+    
+    
+def check_sudoku(array):
+    arr_len=len(array)
+    #print arr_len
+    if arr_len == 1:
+        return True
+    #elif arr_len<3:
+    #    return False
+    else:
+        Rows_result=check_rows(array,arr_len)
+        Colums_result=str(check_columns(array[0],array,arr_len))
+        #print "Rows_result="+ str(Rows_result)
+        #print "Colums_result="+str(Colums_result)
+        if str(Rows_result) == "True" and str(Colums_result) =="True" :
+            return True
+        else:
+            return False
+    
+    
+    
+print check_sudoku(incorrect7)
+#a=1.5
+#print type(a)
+#print type(len([[1]]))
+
+#print check_columns([1,2,3,4], incorrect6,4)
+
+    
+
+
+
+
+    
+    
+#print check_sudoku(incorrect)
+#>>> False
+
+#print check_sudoku(correct)
+#>>> True
+
+#print check_sudoku(incorrect2)
+#>>> False
+
+#print check_sudoku(incorrect3)
+#>>> False
+
+#print check_sudoku(incorrect4)
+#>>> False
+
+#print check_sudoku(incorrect5)
+#>>> False
+
+#print check_arr(test)
+
