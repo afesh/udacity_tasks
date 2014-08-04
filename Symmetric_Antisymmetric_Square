@@ -1,0 +1,65 @@
+mitris_GR from forums
+# Modify Problem Set 31's (Optional) Symmetric Square to return True 
+# if the given square is antisymmetric and False otherwise. 
+# An nxn square is called antisymmetric if A[i][j]=-A[j][i] 
+# for each i=0,1,...,n-1 and for each j=0,1,...,n-1.
+
+def antisymmetric(A):
+    arr_len=len(A)
+    antisym=[]
+    cond=[]
+    symm=[]
+    count=0
+    i=0
+    #print arr_len
+    for a in A:
+        j=0
+        antisym[:]=[]
+        symm[:]=[]
+        cond[:]=[]
+        for aa in a:
+            while j < arr_len:
+                antisym.append(-A[i][j])
+                symm.append(A[j][i])
+                j+=1
+        print "A="+str(a) + " / symm="+ str(symm)+ " / Antysym=" +str(antisym)
+        #cond+=(-antisym)
+        #print "Cond="+str(cond)
+        if symm == a or symm == antisym:
+            count+=1
+        i+=1
+    if count != arr_len:
+        return False
+    else:
+        return True
+        
+        
+    #Write your code here
+
+
+# Test Cases:
+
+#antisymmetric([[0, 1, 2], 
+#               [-1, 0, 3], 
+#               [-2, -3, 0]])   
+#>>> True
+
+print antisymmetric([[0, 0, 0],
+                     [0, 0, 0],
+                     [0, 0, 0]])
+#>>> True
+
+print antisymmetric([[0, 1, 2], 
+                     [-1, 0, -2], 
+                     [2, 2,  3]])
+#>>> False
+
+print antisymmetric([[1, 2, 5],
+                     [0, 1, -9],
+                     [0, 0, 1]])
+#>>> False
+
+print antisymmetric([[0, 1, 2], 
+                     [-1, 0, 3], 
+                     [-2, -3, 0]])
+
